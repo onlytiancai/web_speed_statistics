@@ -1,0 +1,14 @@
+$def with (content)
+<htm>
+<head>
+    <title>访问速度统计</title>
+</head>
+<body>
+    <script>
+        window.statistics_clientid='onlytiancai';
+    </script>
+    <script src="/static/statistics.js"></script>
+    以下为每个clientid的平均访问时间<br>
+    <pre>$content</pre>
+</body>
+</htm>
