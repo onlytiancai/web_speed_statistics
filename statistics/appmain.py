@@ -5,7 +5,10 @@ import os
 import json
 import urlparse
 
-from . import statistics_helper
+try:
+    from . import statistics_helper
+except:
+    import statistics_helper 
 
 curdir = os.path.dirname(__file__)
 render = web.template.render(os.path.join(curdir, 'templates/'))

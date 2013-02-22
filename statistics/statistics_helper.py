@@ -3,7 +3,10 @@
 import web
 from collections import defaultdict
 
-from . import iphelper
+try:
+    from . import iphelper
+except:
+    import iphelper
 
 region_data_map = defaultdict(dict)
 isp_data_map = defaultdict(dict)
