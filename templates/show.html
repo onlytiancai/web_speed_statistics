@@ -4,6 +4,8 @@ $def with (content)
         <title>全国访问速度图</title>
         <link href="/static/jquery.vector-map.css" media="screen" rel="stylesheet" type="text/css" />
         <script src="/static/jquery-1.8.2.min.js" type="text/javascript"></script>
+        <script src="/static/underscore-min.js" type="text/javascript"></script>
+        <script src="/static/highcharts.js" type="text/javascript"></script>
         <script src="/static/jquery.vector-map.js" type="text/javascript"></script>
         <script src="/static/china-zh.js" type="text/javascript"></script>
         <script>
@@ -12,9 +14,13 @@ $def with (content)
         <script src="/static/show.js" type="text/javascript"></script>
 </head>
 <body>
-    <h3>$content["clientid"]全国访问速度</h3>
-    <div id="container" style="margin-left: 45px; padding-top: 10px; padding-left: 10px;
-        background: white; width: 650px; height: 530px;">
-    </div>
+    <h2>$content["clientid"]</h2>
+    <h4>全国访问速度</h4>
+    <div id="china_map" style="width: 650px; height: 530px;"> </div>
+    <p>注：未知数据计入台湾省访问</p>
+    <h4>各运营商平均响应时间</h4>
+    <div id="isp_bar" style="width: 650px; height: 530px;"> </div>
+    <h4>全国访问速度排名</h4>
+    <div id="region_bar" style="width: 650px; min-height: 400px;"></div>
 </body>
 </html>

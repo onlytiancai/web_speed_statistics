@@ -1,14 +1,45 @@
 $def with (content)
-<htm>
+<html>
 <head>
     <title>访问速度统计</title>
 </head>
 <body>
-    <script>
-        window.statistics_clientid='onlytiancai';
-    </script>
-    <script src="/static/statistics.js"></script>
-    以下为每个clientid的平均访问时间<br>
-    <pre>$content</pre>
+    以下链接为每个用户的的全国访问详情<br>
+    $for clientid in content: 
+        <p><a href="/show/$clientid">$clientid</a></p>
+
+    <p>要想使用的话，粘贴如下代码到您的网站,前面两个配置参数要做适当的修改</p>
+    <textarea style="width:800px;height:200px;"><script>
+    window.statistics_clientid = 'onlytiancai';
+    window.statistics_url = '/statistics/';
+    (function(){if(!window.addEventListener){return}window.addEventListener("load",function(){var d=window.performance.timing;if(d===undefined){return}if(document.cookie.indexOf("statistics_clientid=")!=-1){return}var b=d.domainLookupEnd-d.domainLookupStart;var c=d.responseStart-d.requestStart;var a=d.responseEnd-d.responseStart;new Image().src=window.statistics_url+statistics_clientid+"/"+b+"/"+c+"/"+a+".png";var e=new Date();e.setDate(e.getDate()+1);document.cookie="statistics_clientid="+escape(statistics_clientid)+";expires="+e.toGMTString()},false)}());
+</script>
+    </textarea>
+<script>
+    (function(){
+        if (!window.addEventListener) return;
+        window.addEventListener('load', function(){
+            var timing = window.performance.timing;
+            if (timing === undefined) return;
+           
+            if (document.cookie.indexOf('statistics_clientid=') != -1) return; //一天一台机器提交一次数据就行了
+
+            var domain_lookup_time = timing.domainLookupEnd - timing.domainLookupStart;
+            var connect_time = timing.connectEnd - timing.connectStart;
+            var read_content_time = timing.responseEnd - timing.responseStart;
+
+            new Image().src = '/statistics/'
+                + domain_lookup_time + "/" 
+                + connect_time + "/" 
+                + read_content_time + ".png"; 
+     
+            var exdate=new Date();
+            exdate.setDate(exdate.getDate() + 1);
+            document.cookie="statistics_clientid=me" 
+                + ";expires="+exdate.toGMTString();
+        
+        }, false);
+    }());
+</script>
 </body>
-</htm>
+</html>
