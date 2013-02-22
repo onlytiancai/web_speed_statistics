@@ -6,7 +6,7 @@ $def with (content)
 <body>
     以下链接为每个用户的的全国访问详情<br>
     $for clientid in content: 
-        <p><a href="/show/$clientid">$clientid</a></p>
+        <p><a href="show/$clientid">$clientid</a></p>
 
     <p>要想使用的话，粘贴如下代码到您的网站,前面两个配置参数要做适当的修改</p>
     <textarea style="width:800px;height:200px;"><script>
@@ -28,7 +28,7 @@ $def with (content)
             var connect_time = timing.connectEnd - timing.connectStart;
             var read_content_time = timing.responseEnd - timing.responseStart;
 
-            new Image().src = '/statistics/'
+            new Image().src = 'statistics/'
                 + domain_lookup_time + "/" 
                 + connect_time + "/" 
                 + read_content_time + ".png"; 

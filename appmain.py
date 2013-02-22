@@ -5,7 +5,7 @@ import os
 import json
 import urlparse
 
-import statistics_helper
+from . import statistics_helper
 
 curdir = os.path.dirname(__file__)
 render = web.template.render(os.path.join(curdir, 'templates/'))
@@ -21,7 +21,6 @@ class statistics(object):
     def GET(self, domain_lookup_time, connect_time, read_content_time):
         referer = web.ctx.env.get('HTTP_REFERER', 'http://undefined.com')
         clientid = urlparse.urlparse(referer).netloc
-        print clientid
         web.header('Content-Type', "image/png", unique=True)
         statistics_helper.save_data(clientid, domain_lookup_time, connect_time, read_content_time)
         return ''
@@ -39,10 +38,10 @@ class statistics_data(object):
         return json.dumps(statistics_helper.get_data(clientid), indent=4)
 
 
-urls = ["/", 'index',
-        "/statistics/([^/]+)/([^/]+)/([^/]+).png", 'statistics',
-        "/show/(.*)", 'show',
-        "/statistics_data/(.*)", 'statistics_data',
+urls = ["/", index,
+        "/statistics/([^/]+)/([^/]+)/([^/]+).png", statistics,
+        "/show/(.*)", show,
+        "/statistics_data/(.*)", statistics_data,
         ]
 
 app = web.application(urls, globals())

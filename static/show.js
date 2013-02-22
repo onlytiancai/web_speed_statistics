@@ -127,7 +127,7 @@ $(function () {
             }]
        }); 
     };
-    $.getJSON('/statistics_data/'+ statistics_clientid, function(result){
+    $.getJSON('../statistics_data/'+ statistics_clientid, function(result){
         show_china_map(result.region_data);
         show_region_bar(result.region_data);
         show_isp_bar(result.isp_data);
